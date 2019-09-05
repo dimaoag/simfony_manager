@@ -1,3 +1,13 @@
 
 // docker
 REGISTRY_ADDRESS=registry IMAGE_TAG=0 make build-production
+
+docker-compose run --rm manager-php-cli composer
+docker-compose run --rm manager-php-cli composer require slim/slim
+
+
+// Symfony install
+docker-compose run --rm manager-php-cli composer create-project symfony/website-skeleton skeleton
+
+// start tests
+docker-compose run --rm manager-php-cli php bin/phpunit
