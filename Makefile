@@ -1,5 +1,5 @@
 up: docker-up
-init: docker-down docker-pull docker-build docker-up manager-init
+init: docker-down-clear docker-pull docker-build docker-up manager-init
 test: manager-test
 
 docker-up:
@@ -7,6 +7,9 @@ docker-up:
 
 docker-down:
 	docker-compose down --remove-orphans
+
+docker-down-clear:
+	docker-compose down -v --remove-orphans
 
 docker-pull:
 	docker-compose pull

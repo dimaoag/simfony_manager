@@ -12,11 +12,27 @@ services:
         restart: always
         environment:
             APP_SECRET: ${MANAGER_APP_SECRET}
-            DATABASE_URL: pgsql://app:${MANAGER_DB_PASSWORD}@manager-postgres:5432/app
+            DATABASE_URL: mysql://dbuser:${MANAGER_DB_PASSWORD}@manager-mysql:3306/manager
             MAILER_URL: ${MANAGER_MAILER_URL}
+        depends_on:
+            - manager-mysql
     manager-php-cli:
         image: ${REGISTRY_ADDRESS}/manager-php-cli:${IMAGE_TAG}
         environment:
             APP_SECRET: ${MANAGER_APP_SECRET}
-            DATABASE_URL: pgsql://app:${MANAGER_DB_PASSWORD}@manager-postgres:5432/app
+            DATABASE_URL: mysql://dbuser:${MANAGER_DB_PASSWORD}@manager-mysql:3306/manager
             MAILER_URL: ${MANAGER_MAILER_URL}
+        depends_on:
+            - manager-mysql
+    manager-mysql:
+        image: ${REGISTRY_ADDRESS}/manager-mysql:${IMAGE_TAG}
+        restart: always
+        volumes:
+            - manager-mysql:/var/lib/mysql
+        environment:
+            MYSQL_USER: dbuser
+            MYSQL_PASSWORD: ${MANAGER_DB_PASSWORD}
+            MYSQL_DATABASE: manager
+
+volumes:
+    manager-mysql:

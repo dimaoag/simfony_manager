@@ -4,6 +4,7 @@ services:
         build:
             context: ./manager/docker/development
             dockerfile: nginx.docker
+        restart: always
         volumes:
             - ./manager:/app
         depends_on:
@@ -16,6 +17,8 @@ services:
             dockerfile: php-fpm.docker
         volumes:
             - ./manager:/app
+        depends_on:
+            - manager-mysql
     manager-php-cli:
         build:
             context: ./manager/docker/development
@@ -23,5 +26,30 @@ services:
         volumes:
             - ./manager:/app
             - composer:/root/.composer/cache
+        depends_on:
+            - manager-mysql
+    manager-mysql:
+        image: mysql:5.7
+        restart: always
+        volumes:
+            - manager-mysql:/var/lib/mysql
+        environment:
+            - "MYSQL_ROOT_PASSWORD=1111"
+            - "MYSQL_USER=dbuser"
+            - "MYSQL_PASSWORD=2222"
+            - "MYSQL_DATABASE=manager"
+        ports:
+            - "33061:3306"
+    manager-phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - manager-mysql:db
+        ports:
+            - 8081:80
+        environment:
+            MYSQL_ROOT_PASSWORD: 1111
+        depends_on:
+            - manager-mysql
 volumes:
+    manager-mysql:
     composer:
