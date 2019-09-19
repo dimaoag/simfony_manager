@@ -40,14 +40,14 @@
                             <a class="nav-link" href="{{ path('post_index') }}">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('/logout') }}">Log Out</a>
+                            <a class="nav-link" href="{{ path('app_logout') }}">Log Out</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('/register') }}">Registration</a>
+                            <a class="nav-link" href="{{ path('app_register') }}">Registration</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('/login') }}">Login</a>
+                            <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
