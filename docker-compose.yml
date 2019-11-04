@@ -19,6 +19,8 @@ services:
             - ./manager:/app
         depends_on:
             - manager-mysql
+        environment:
+            PHP_IDE_CONFIG: serverName=Symfony
     manager-php-cli:
         build:
             context: ./manager/docker/development
@@ -32,6 +34,7 @@ services:
         image: mysql:5.7
         restart: always
         volumes:
+           # - ./docker/storage/mysql:/var/lib/mysql
             - manager-mysql:/var/lib/mysql
         environment:
             - "MYSQL_ROOT_PASSWORD=1111"
