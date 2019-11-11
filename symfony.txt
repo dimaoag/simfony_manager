@@ -18,10 +18,31 @@ docker-compose run --rm manager-php-cli php bin/console debug:router
 docker-compose run --rm manager-php-cli php bin/console make:entity
 
 docker-compose run --rm manager-php-cli php bin/console make:migration
-docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:migrate
+docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:migrate  //apply all migrations
+docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:diff //apply new migrations
 
 docker-compose run --rm manager-php-cli php bin/console make:crud
 
 docker-compose run --rm manager-php-cli php bin/console make:user
 docker-compose run --rm manager-php-cli php bin/console make:auth
 docker-compose run --rm manager-php-cli php bin/console make:registration-form
+
+
+// Unit of Work
+    $post = new Post();
+    $post->setTitle('Test Title');
+    $em->persist($post);
+    $em->flush();
+    */ $toInsert = [];  /*
+    */ $toUpdate = [];  /*
+
+// Identity Map
+    */ $entities = [
+        25 => $post,
+    ];  /*
+    $repository = $em->getRepository(Post::class);
+    $post = $repository->find(25);
+
+// Data Mapper
+    в каком формате будут доставатся с базы данные и в каком формате будут сохранятся в базу данные
+
