@@ -71,11 +71,11 @@ class User
      * @ORM\Column(type="string", length=16)
      */
     private $status;
-//    /**
-//     * @var Role
-//     * @ORM\Column(type="user_user_role", length=16)
-//     */
-//    private $role;
+    /**
+     * @var Role
+     * @ORM\Column(type="user_user_role", length=16)
+     */
+    private $role;
     /**
      * @var Network[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="Network", mappedBy="user", orphanRemoval=true, cascade={"persist"})
@@ -92,7 +92,7 @@ class User
         $this->id = $id;
         $this->date = $date;
         $this->name = $name;
-//        $this->role = Role::user();
+        $this->role = Role::user();
         $this->networks = new ArrayCollection();
     }
 
