@@ -61,11 +61,11 @@ class User
 //     * @ORM\Column(type="string", name="new_email_token", nullable=true)
 //     */
 //    private $newEmailToken;
-//    /**
-//     * @var ResetToken|null
-//     * @ORM\Embedded(class="ResetToken", columnPrefix="reset_token_")
-//     */
-//    private $resetToken;
+    /**
+     * @var ResetToken|null
+     * @ORM\Embedded(class="ResetToken", columnPrefix="reset_token_")
+     */
+    private $resetToken;
     /**
      * @var string
      * @ORM\Column(type="string", length=16)
