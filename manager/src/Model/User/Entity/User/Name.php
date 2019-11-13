@@ -14,10 +14,12 @@ class Name
 {
     /**
      * @var string
+     * @ORM\Column(type="string")
      */
     private $first;
     /**
      * @var string
+     * @ORM\Column(type="string")
      */
     private $last;
 

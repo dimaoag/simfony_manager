@@ -55,12 +55,12 @@ class User
      * @var Email|null
      * @ORM\Column(type="user_user_email", name="new_email", nullable=true)
      */
-//    private $newEmail;
-//    /**
-//     * @var string|null
-//     * @ORM\Column(type="string", name="new_email_token", nullable=true)
-//     */
-//    private $newEmailToken;
+    private $newEmail;
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", name="new_email_token", nullable=true)
+     */
+    private $newEmailToken;
     /**
      * @var ResetToken|null
      * @ORM\Embedded(class="ResetToken", columnPrefix="reset_token_")
