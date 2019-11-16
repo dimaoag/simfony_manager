@@ -22,6 +22,7 @@ class User
     public const STATUS_BLOCKED = 'blocked';
 
     /**
+     * @var Id
      * @ORM\Column(type="user_user_id")
      * @ORM\Id
      */
