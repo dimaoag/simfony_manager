@@ -59,18 +59,18 @@ class UserRepository
 
     public function hasByEmail(Email $email): bool
     {
-        return $this->repo->createQueryBuilder('t')
-                ->select('COUNT(t.id)')
-                ->andWhere('t.email = :email')
+        return $this->repo->createQueryBuilder('u')
+                ->select('COUNT(u.id)')
+                ->andWhere('u.email = :email')
                 ->setParameter(':email', $email->getValue())
                 ->getQuery()->getSingleScalarResult() > 0;
     }
 
     public function hasByNetworkIdentity(string $network, string $identity): bool
     {
-        return $this->repo->createQueryBuilder('t')
-                ->select('COUNT(t.id)')
-                ->innerJoin('t.networks', 'n')
+        return $this->repo->createQueryBuilder('u')
+                ->select('COUNT(u.id)')
+                ->innerJoin('u.networks', 'n')
                 ->andWhere('n.network = :network and n.identity = :identity')
                 ->setParameter(':network', $network)
                 ->setParameter(':identity', $identity)

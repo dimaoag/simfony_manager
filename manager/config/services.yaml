@@ -20,9 +20,22 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
+
+    Finesse\SwiftMailerDefaultsPlugin\SwiftMailerDefaultsPlugin:
+        arguments:
+            $defaults:
+                from:
+                    '%env(MAILER_FROM_EMAIL)%': '%env(MAILER_FROM_NAME)%'
+        tags:
+            - { name: swiftmailer.default.plugin }
+
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+
+    App\Model\User\Service\ResetTokenizer:
+        factory: 'App\Container\Model\User\Service\ResetTokenizerFactory:create'
+        arguments: ['PT1H']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

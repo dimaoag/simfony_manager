@@ -27,7 +27,8 @@
         "symfony/web-link": "4.3.*",
         "symfony/yaml": "4.3.*",
         "ramsey/uuid": "^3.8",
-        "webmozart/assert": "^1.4"
+        "webmozart/assert": "^1.4",
+        "finesse/swiftmailer-defaults-plugin": "^2.0"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

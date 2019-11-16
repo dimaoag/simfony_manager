@@ -25,7 +25,7 @@ manager-migrations:
 manager-migrations-new:
 	docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:diff
 
-manager-init: manager-composer-install
+manager-init: manager-composer-install manager-migrations
 
 manager-composer-install:
 	docker-compose run --rm manager-php-cli composer install
