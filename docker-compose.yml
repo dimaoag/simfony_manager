@@ -53,6 +53,11 @@ services:
             MYSQL_ROOT_PASSWORD: 1111
         depends_on:
             - manager-mysql
+    mailer:
+        image: mailhog/mailhog
+        ports:
+            - "8082:8025"
+
 volumes:
     manager-mysql:
     composer:

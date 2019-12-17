@@ -83,6 +83,7 @@ class SignUpController extends AbstractController
 
         try {
             $handler->handle($command);
+            $this->addFlash('success', 'Email successfully confirmed.');
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $userProvider->loadUserByUsername($user->email),
                 $request,
