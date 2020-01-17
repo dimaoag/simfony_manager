@@ -36,6 +36,9 @@ manager-composer-install:
 manager-composer-update:
 	docker-compose run --rm manager-php-cli composer update
 
+manager-composer-dumpautoload:
+	docker-compose run --rm manager-php-cli composer dumpautoload
+
 manager-test:
 	docker-compose run --rm manager-php-cli php bin/phpunit
 
