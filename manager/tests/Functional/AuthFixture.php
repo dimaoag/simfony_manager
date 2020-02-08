@@ -26,16 +26,16 @@ class AuthFixture extends Fixture
     public static function userCredentials(): array
     {
         return [
-            'PHP_AUTH_USER' => 'auth-user@app.test',
-            'PHP_AUTH_PW' => 'password',
+            'PHP_AUTH_USER' => 'user@app.test',
+            'PHP_AUTH_PW' => '123456',
         ];
     }
 
     public static function adminCredentials(): array
     {
         return [
-            'PHP_AUTH_USER' => 'auth-admin@app.test',
-            'PHP_AUTH_PW' => 'password',
+            'PHP_AUTH_USER' => 'dimaoag@gmail.com',
+            'PHP_AUTH_PW' => '123456',
         ];
     }
 

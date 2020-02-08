@@ -14,21 +14,21 @@ class HomeTest extends DbWebTestCase
         $this->assertSame('http://localhost/login', $this->client->getResponse()->headers->get('Location'));
     }
 
-//    public function testUser(): void
-//    {
-//        $this->client->setServerParameters(AuthFixture::userCredentials());
-//        $crawler = $this->client->request('GET', '/');
-//
-//        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
-//        $this->assertContains('Home', $crawler->filter('title')->text());
-//    }
-//
-//    public function testAdmin(): void
-//    {
-//        $this->client->setServerParameters(AuthFixture::adminCredentials());
-//        $crawler = $this->client->request('GET', '/');
-//
-//        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
-//        $this->assertContains('Home', $crawler->filter('title')->text());
-//    }
+    public function testUser(): void
+    {
+        $this->client->setServerParameters(AuthFixture::userCredentials());
+        $crawler = $this->client->request('GET', '/');
+
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('Hello', $crawler->filter('h1')->text());
+    }
+
+    public function testAdmin(): void
+    {
+        $this->client->setServerParameters(AuthFixture::adminCredentials());
+        $crawler = $this->client->request('GET', '/');
+
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('Hello', $crawler->filter('h1')->text());
+    }
 }
