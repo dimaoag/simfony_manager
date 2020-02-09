@@ -1,6 +1,6 @@
 up: docker-up
 restart: docker-down docker-up
-init: docker-down-clear docker-pull docker-build docker-up manager-init
+init: docker-down-clear manager-clear docker-pull docker-build docker-up manager-init
 down: docker-down
 test: manager-test
 test-coverage: manager-test-coverage
@@ -34,7 +34,7 @@ manager-migrations-new:
 manager-fixtures:
 	docker-compose run --rm manager-php-cli php bin/console doctrine:fixtures:load --no-interaction
 
-manager-init: manager-composer-install manager-migrations manager-fixtures
+manager-init: manager-composer-install manager-assets-install manager-migrations manager-fixtures manager-ready
 
 manager-composer-install:
 	docker-compose run --rm manager-php-cli composer install
