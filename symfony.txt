@@ -46,3 +46,6 @@ docker-compose run --rm manager-php-cli php bin/console make:registration-form
 // Data Mapper
     в каком формате будут доставатся с базы данные и в каком формате будут сохранятся в базу данные
 
+// assets
+docker-compose run --rm manager-php-cli composer require encore
+

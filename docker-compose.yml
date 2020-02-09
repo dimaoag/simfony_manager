@@ -4,7 +4,6 @@ services:
         build:
             context: ./manager/docker/development
             dockerfile: nginx.docker
-        restart: always
         volumes:
             - ./manager:/app
         depends_on:
@@ -19,8 +18,11 @@ services:
             - ./manager:/app
         depends_on:
             - manager-mysql
-        environment:
-            PHP_IDE_CONFIG: serverName=Symfony
+            - manager-redis
+            - manager-queue-redis
+            - storage
+            - mailer
+            - centrifugo
     manager-php-cli:
         build:
             context: ./manager/docker/development
@@ -30,11 +32,42 @@ services:
             - composer:/root/.composer/cache
         depends_on:
             - manager-mysql
+            - manager-redis
+            - manager-queue-redis
+            - storage
+            - mailer
+            - centrifugo
+    manager-queue-worker:
+        build:
+            context: ./manager/docker/development
+            dockerfile: php-cli.docker
+        volumes:
+            - ./manager:/app
+            - composer:/root/.composer/cache
+        depends_on:
+            - manager-mysql
+            - manager-redis
+            - manager-queue-redis
+            - storage
+            - mailer
+            - centrifugo
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
+    manager-node-watch:
+        image: node:12.7-alpine
+        volumes:
+            - ./manager:/app
+        working_dir: /app
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && npm run watch"
+    manager-node:
+        image: node:12.7-alpine
+        volumes:
+            - ./manager:/app
+        working_dir: /app
     manager-mysql:
         image: mysql:5.7
         restart: always
         volumes:
-           # - ./docker/storage/mysql:/var/lib/mysql
+            # - ./docker/storage/mysql:/var/lib/mysql
             - manager-mysql:/var/lib/mysql
         environment:
             - "MYSQL_ROOT_PASSWORD=1111"
@@ -43,21 +76,57 @@ services:
             - "MYSQL_DATABASE=manager"
         ports:
             - "33061:3306"
-    manager-phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links:
-            - manager-mysql:db
+    manager-redis:
+        image: redis:5.0-alpine
+        volumes:
+            - manager-redis:/data
+        command:
+            - 'redis-server'
+            - '--databases 2'
+            - '--save 900 1'
+            - '--save 300 10'
+            - '--save 60 10000'
+            - '--requirepass secret'
+    manager-queue-redis:
+        image: redis:5.0-alpine
+        volumes:
+            - manager-queue-redis:/data
+    storage:
+        build:
+            context: ./storage/docker/development
+            dockerfile: nginx.docker
+        volumes:
+            - ./storage:/app
         ports:
-            - 8081:80
+            - "8081:80"
+    storage-ftp:
+        image: stilliard/pure-ftpd
         environment:
-            MYSQL_ROOT_PASSWORD: 1111
-        depends_on:
-            - manager-mysql
+            FTP_USER_NAME: app
+            FTP_USER_PASS: secret
+            FTP_USER_HOME: /app
+        volumes:
+            - ./storage/public:/app
     mailer:
         image: mailhog/mailhog
         ports:
             - "8082:8025"
-
+    centrifugo:
+        image: centrifugo/centrifugo:v2.2
+        ulimits:
+            nofile:
+                soft: 65536
+                hard: 65536
+        environment:
+            CENTRIFUGO_SECRET: secret
+            CENTRIFUGO_API_KEY: secret
+        volumes:
+            - ./centrifugo/docker/development/centrifugo:/centrifugo
+        ports:
+            - "8083:8000"
+        command: centrifugo --admin --admin_insecure
 volumes:
     manager-mysql:
+    manager-redis:
+    manager-queue-redis:
     composer:
