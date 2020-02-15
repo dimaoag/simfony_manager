@@ -48,4 +48,8 @@ docker-compose run --rm manager-php-cli php bin/console make:registration-form
 
 // assets
 docker-compose run --rm manager-php-cli composer require encore
+docker-compose run --rm manager-node yarn add -s bootstrap jquery popper.js
+docker-compose run --rm manager-node yarn add -s --dev sass-loader node-sass
+docker-compose run --rm manager-node yarn add -s @coreui/coreui font-awesome perfect-scrollbar simple-line-icons
+
 

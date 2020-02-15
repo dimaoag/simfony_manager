@@ -16,7 +16,9 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Model/User/Entity,Model/Work/Entity,Migrations,Tests,Kernel.php}'
+
+    App\Model\User\Entity\User\UserRepository: ~
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -39,3 +41,17 @@ services:
         arguments: ['PT1H']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    Redis:
+        class: Redis
+        calls:
+            - method: connect
+              arguments:
+                  - '%env(REDIS_HOST)%'
+            - method: auth
+              arguments:
+                  - '%env(REDIS_PASSWORD)%'
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'
