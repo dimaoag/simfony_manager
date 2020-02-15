@@ -42,6 +42,13 @@
     <div class="sidebar">
         <nav class="sidebar-nav">
 {#            {{ knp_menu_render('sidebar', {'currentClass': 'active'}) }}#}
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('users') }}">
+                        <i class="nav-icon icon-people"></i> Users
+                    </a>
+                </li>
+            </ul>
         </nav>
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>
     </div>
