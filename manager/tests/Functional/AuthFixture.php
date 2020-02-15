@@ -44,10 +44,10 @@ class AuthFixture extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-        $hash = $this->hasher->hash('password');
+        $hash = $this->hasher->hash('123456');
 
         $user = (new UserBuilder())
-            ->viaEmail(new Email('auth-user@app.test'), $hash)
+            ->viaEmail(new Email('user@app.test'), $hash)
             ->confirmed()
             ->build();
 
@@ -55,7 +55,7 @@ class AuthFixture extends Fixture
         $this->setReference(self::REFERENCE_USER, $user);
 
         $admin = (new UserBuilder())
-            ->viaEmail(new Email('auth-admin@app.test'), $hash)
+            ->viaEmail(new Email('dimaoag@gmail.com'), $hash)
             ->confirmed()
             ->withRole(Role::admin())
             ->build();
