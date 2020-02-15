@@ -20,7 +20,7 @@ class HomeTest extends DbWebTestCase
         $crawler = $this->client->request('GET', '/');
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('Hello', $crawler->filter('h1')->text());
+        $this->assertContains('Home', $crawler->filter('title')->text());
     }
 
     public function testAdmin(): void
@@ -29,6 +29,6 @@ class HomeTest extends DbWebTestCase
         $crawler = $this->client->request('GET', '/');
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('Hello', $crawler->filter('h1')->text());
+        $this->assertContains('Home', $crawler->filter('title')->text());
     }
 }
