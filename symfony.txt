@@ -57,3 +57,6 @@ docker-compose run --rm manager-node yarn add -s @coreui/coreui font-awesome per
 docker-compose run --rm manager-php-cli php bin/console user:confirm
 docker-compose run --rm manager-php-cli php bin/console user:role
 
+
+// clear cache
+docker-compose run --rm manager-php-cli php bin/console cache:clear

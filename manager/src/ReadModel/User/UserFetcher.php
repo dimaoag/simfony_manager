@@ -10,24 +10,24 @@ use App\ReadModel\User\Filter\Filter;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Doctrine\ORM\EntityManagerInterface;
-//use Knp\Component\Pager\Pagination\PaginationInterface;
-//use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class UserFetcher
 {
     private $connection;
-//    private $paginator;
+    private $paginator;
     private $repository;
 
     public function __construct(
         Connection $connection,
-        EntityManagerInterface $em
-//        PaginatorInterface $paginator
+        EntityManagerInterface $em,
+        PaginatorInterface $paginator
     )
     {
         $this->connection = $connection;
         $this->repository = $em->getRepository(User::class);
-//        $this->paginator = $paginator;
+        $this->paginator = $paginator;
     }
 
     public function existsByResetToken(string $token): bool
@@ -134,25 +134,6 @@ class UserFetcher
         return $user;
     }
 
-//    public function all(): array
-//    {
-//        $stmt = $this->connection->createQueryBuilder()
-//            ->select(
-//                'id',
-//                'date',
-//                'TRIM(CONCAT(name_first, \' \', name_last)) AS name',
-//                'email',
-//                'role',
-//                'status'
-//            )
-//            ->from('user_users')
-//            ->orderBy('date', 'desc')
-//            ->execute();
-//
-//        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
-//    }
-
-
     /**
      * @param Filter $filter
      * @param int $page
@@ -161,7 +142,7 @@ class UserFetcher
      * @param string $direction
      * @return PaginationInterface
      */
-    public function all(Filter $filter, int $page, int $size, string $sort, string $direction): array
+    public function all(Filter $filter, int $page, int $size, string $sort, string $direction): PaginationInterface
     {
         $qb = $this->connection->createQueryBuilder()
             ->select(
@@ -200,9 +181,6 @@ class UserFetcher
 
         $qb->orderBy($sort, $direction === 'desc' ? 'desc' : 'asc');
 
-        $stmt = $qb->execute();
-
-//        return $this->paginator->paginate($qb, $page, $size);
-        return $stmt->fetchAll(FetchMode::ASSOCIATIVE);
+        return $this->paginator->paginate($qb, $page, $size);
     }
 }

@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UsersController extends AbstractController
 {
-    private const PER_PAGE = 50;
+    private const PER_PAGE = 5;
 
     private $errors;
 
@@ -57,7 +57,7 @@ class UsersController extends AbstractController
         );
 
         return $this->render('app/users/index.html.twig', [
-            'users' => $pagination,
+            'pagination' => $pagination,
             'form' => $form->createView(),
         ]);
     }
