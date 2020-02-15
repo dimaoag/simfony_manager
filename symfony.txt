@@ -53,3 +53,7 @@ docker-compose run --rm manager-node yarn add -s --dev sass-loader node-sass
 docker-compose run --rm manager-node yarn add -s @coreui/coreui font-awesome perfect-scrollbar simple-line-icons
 
 
+// confirm and change role
+docker-compose run --rm manager-php-cli php bin/console user:confirm
+docker-compose run --rm manager-php-cli php bin/console user:role
+
