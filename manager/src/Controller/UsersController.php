@@ -13,7 +13,7 @@ use App\Model\User\UseCase\Role;
 use App\Model\User\UseCase\SignUp\Confirm;
 use App\ReadModel\User\Filter;
 use App\ReadModel\User\UserFetcher;
-//use App\ReadModel\Work\Members\Member\MemberFetcher;
+use App\ReadModel\Work\Members\Member\MemberFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -243,24 +243,13 @@ class UsersController extends AbstractController
     /**
      * @Route("/{id}", name=".show")
      * @param User $user
+     * @param MemberFetcher $members
      * @return Response
      */
-    public function show(User $user): Response
+    public function show(User $user, MemberFetcher $members): Response
     {
-        return $this->render('app/users/show.html.twig', compact('user'));
+        $member = $members->find($user->getId()->getValue());
+
+        return $this->render('app/users/show.html.twig', compact('user', 'member'));
     }
-
-
-//    /**
-//     * @Route("/{id}", name=".show")
-//     * @param User $user
-//     * @param MemberFetcher $members
-//     * @return Response
-//     */
-//    public function show(User $user, MemberFetcher $members): Response
-//    {
-//        $member = $members->find($user->getId()->getValue());
-//
-//        return $this->render('app/users/show.html.twig', compact('user', 'member'));
-//    }
 }

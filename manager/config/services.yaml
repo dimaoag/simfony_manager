@@ -19,6 +19,11 @@ services:
         exclude: '../src/{DependencyInjection,Model/User/Entity,Model/Work/Entity,Migrations,Tests,Kernel.php}'
 
     App\Model\User\Entity\User\UserRepository: ~
+    App\Model\Work\Entity\Members\Group\GroupRepository: ~
+    App\Model\Work\Entity\Members\Member\MemberRepository: ~
+#    App\Model\Work\Entity\Projects\Role\RoleRepository: ~
+#    App\Model\Work\Entity\Projects\Project\ProjectRepository: ~
+#    App\Model\Work\Entity\Projects\Task\TaskRepository: ~
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -59,3 +64,42 @@ services:
     App\Widget\:
         resource: '../src/Widget'
         tags: ['twig.extension']
+
+#    App\Menu\SidebarMenu:
+#        tags: [{ name: knp_menu.menu_builder, method: build, alias: sidebar }]
+#
+#    App\Menu\Work\MainMenu:
+#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_main }]
+#
+#    App\Menu\Work\Projects\ProjectMenu:
+#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project }]
+#
+#    App\Menu\Work\Projects\SettingsMenu:
+#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project_settings }]
+#
+#    App\Menu\Work\Projects\TaskPresetMenu:
+#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_projects_task_presets }]
+#
+#    Symfony\Component\HttpFoundation\Session\Session:
+#        alias: Symfony\Component\HttpFoundation\Session\SessionInterface
+#
+#    cebe\markdown\MarkdownExtra:
+#
+#    App\Service\Work\Processor\Driver\:
+#        resource: '../src/Service/Work/Processor/Driver/*Driver.php'
+#        tags: ['app.twig.work_processor.driver']
+#
+#    App\Service\Work\Processor\Processor:
+#        arguments: [!tagged app.twig.work_processor.driver]
+#
+#    App\Service\Uploader\FileUploader:
+#        arguments: ['@default.storage', '%env(STORAGE_BASE_URL)%']
+#
+#    App\Model\EventDispatcher:
+#        class: App\Event\Dispatcher\MessengerEventDispatcher
+#
+#    phpcent\Client:
+#        arguments:
+#            - '%env(CENTRIFUGO_API_HOST)%/api'
+#            - '%env(CENTRIFUGO_API_KEY)%'
+#            - '%env(CENTRIFUGO_SECRET)%'
