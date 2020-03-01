@@ -26,7 +26,7 @@ class AuthFixture extends Fixture
     public static function userCredentials(): array
     {
         return [
-            'PHP_AUTH_USER' => 'user@app.test',
+            'PHP_AUTH_USER' => 'test_user@app.test',
             'PHP_AUTH_PW' => '123456',
         ];
     }
@@ -34,7 +34,7 @@ class AuthFixture extends Fixture
     public static function adminCredentials(): array
     {
         return [
-            'PHP_AUTH_USER' => 'dimaoag@gmail.com',
+            'PHP_AUTH_USER' => 'test_dimaoag@gmail.com',
             'PHP_AUTH_PW' => '123456',
         ];
     }
@@ -47,7 +47,7 @@ class AuthFixture extends Fixture
         $hash = $this->hasher->hash('123456');
 
         $user = (new UserBuilder())
-            ->viaEmail(new Email('user@app.test'), $hash)
+            ->viaEmail(new Email('test_user@app.test'), $hash)
             ->confirmed()
             ->build();
 
@@ -55,7 +55,7 @@ class AuthFixture extends Fixture
         $this->setReference(self::REFERENCE_USER, $user);
 
         $admin = (new UserBuilder())
-            ->viaEmail(new Email('dimaoag@gmail.com'), $hash)
+            ->viaEmail(new Email('test_dimaoag@gmail.com'), $hash)
             ->confirmed()
             ->withRole(Role::admin())
             ->build();

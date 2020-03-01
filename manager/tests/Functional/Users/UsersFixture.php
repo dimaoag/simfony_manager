@@ -18,14 +18,14 @@ class UsersFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $existing = (new UserBuilder())
-            ->viaEmail(new Email('user@app.test'), '123456')
+            ->viaEmail(new Email('existing_user@app.test'), '123456')
             ->confirmed()
             ->build();
 
         $manager->persist($existing);
 
         $show = (new UserBuilder())
-            ->viaEmail(new Email('user@app.test'), '123456')
+            ->viaEmail(new Email('show_user@app.test'), '123456')
             ->withName(new Name('Show', 'User'))
             ->withId(new Id(self::EXISTING_ID))
             ->confirmed()
