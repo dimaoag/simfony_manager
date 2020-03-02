@@ -47,8 +47,8 @@ class MemberFetcher
                 'TRIM(CONCAT(m.name_first, \' \', m.name_last)) AS name',
                 'm.email',
                 'g.name as group_name',
-                'm.status'
-//                '(SELECT COUNT(*) FROM work_projects_project_memberships ms WHERE ms.member_id = m.id) as memberships_count'
+                'm.status',
+                '(SELECT COUNT(*) FROM work_projects_project_memberships ms WHERE ms.member_id = m.id) as memberships_count'
             )
             ->from('work_members_members', 'm')
             ->innerJoin('m', 'work_members_groups', 'g', 'm.group_id = g.id');
@@ -98,7 +98,7 @@ class MemberFetcher
             ->select([
                 'm.id',
                 'CONCAT(m.name_first, \' \', m.name_last) AS name',
-                'g.name AS group'
+                'g.name AS group_name'
             ])
             ->from('work_members_members', 'm')
             ->leftJoin('m', 'work_members_groups', 'g', 'g.id = m.group_id')

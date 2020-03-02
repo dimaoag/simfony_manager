@@ -231,7 +231,7 @@ class MembersController extends AbstractController
 //    }
 
     /**
-    * @Route("/{id}", name=".show")
+    * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
     * @param Member $member
     * @return Response
     */

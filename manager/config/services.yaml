@@ -21,8 +21,8 @@ services:
     App\Model\User\Entity\User\UserRepository: ~
     App\Model\Work\Entity\Members\Group\GroupRepository: ~
     App\Model\Work\Entity\Members\Member\MemberRepository: ~
-#    App\Model\Work\Entity\Projects\Role\RoleRepository: ~
-#    App\Model\Work\Entity\Projects\Project\ProjectRepository: ~
+    App\Model\Work\Entity\Projects\Role\RoleRepository: ~
+    App\Model\Work\Entity\Projects\Project\ProjectRepository: ~
 #    App\Model\Work\Entity\Projects\Task\TaskRepository: ~
 
     # controllers are imported separately to make sure services can be injected
@@ -71,11 +71,11 @@ services:
 #    App\Menu\Work\MainMenu:
 #        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_main }]
 #
-#    App\Menu\Work\Projects\ProjectMenu:
-#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project }]
-#
-#    App\Menu\Work\Projects\SettingsMenu:
-#        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project_settings }]
+    App\Menu\Work\Projects\ProjectMenu:
+        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project }]
+
+    App\Menu\Work\Projects\SettingsMenu:
+        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_project_settings }]
 #
 #    App\Menu\Work\Projects\TaskPresetMenu:
 #        tags: [{ name: knp_menu.menu_builder, method: build, alias: work_projects_task_presets }]
