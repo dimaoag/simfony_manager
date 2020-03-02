@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Work\Members;
 
+use App\Annotation\Guid;
 use App\Model\Work\Entity\Members\Group\Group;
 use App\Model\Work\UseCase\Members\Group\Create;
 use App\Model\Work\UseCase\Members\Group\Edit;
@@ -126,7 +127,7 @@ class GroupsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name=".show")
+     * @Route("/{id}", name=".show", requirements={"id"=Guid::PATTERN})
      * @return Response
      */
     public function show(): Response
