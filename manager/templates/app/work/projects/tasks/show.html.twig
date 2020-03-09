@@ -235,13 +235,14 @@
 {#                </table>#}
 {#            </div>#}
 
-{#            {% if task.content %}#}
-{#                <div class="card mb-3">#}
-{#                    <div class="card-body pb-0">#}
+            {% if task.content %}
+                <div class="card mb-3">
+                    <div class="card-body pb-0">
 {#                        {{ task.content|markdown|purify|work_processor }}#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endif %}#}
+                        {{ task.content|nl2br }}
+                    </div>
+                </div>
+            {% endif %}
 
 {#            <div class="card">#}
 {#                <div class="card-header">Work</div>#}

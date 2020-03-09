@@ -13,7 +13,6 @@ use App\Model\Work\Entity\Projects\Task\Task;
 use App\Model\Work\Entity\Projects\Task\Id;
 use App\Model\Work\Entity\Projects\Task\TaskRepository;
 use App\Model\Work\Entity\Projects\Task\Type;
-use Symfony\Component\VarDumper\VarDumper;
 
 class Handler
 {
@@ -40,10 +39,12 @@ class Handler
         $date = new \DateTimeImmutable();
 
         $tasks = [];
+        $i = 0;
+        $intId = $this->tasks->nextId()->getValue();
 
         foreach ($command->names as $name) {
             $task = new Task(
-                $this->tasks->nextId(),
+                new Id($intId + $i),
                 $project,
                 $member,
                 $date,
@@ -64,6 +65,8 @@ class Handler
             $this->tasks->add($task);
 
             $tasks[] = $task;
+
+            $i++;
         }
 
         $this->flusher->flush(...$tasks);
