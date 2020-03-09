@@ -9,7 +9,7 @@ use App\Model\User\Entity\User\User;
 use App\Model\User\Entity\User\Id;
 use App\Model\User\Service\PasswordHasher;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class UserFixture extends Fixture
 {
@@ -50,8 +50,8 @@ class UserFixture extends Fixture
         $this->setReference(self::REFERENCE_USER, $confirmed);
 
         $admin = $this->createAdminByEmail(
-            new Name('Dima', 'Orikhovskyi'),
-            new Email('dimaoag@gmail.com'),
+            new Name('James', 'Bond'),
+            new Email('admin@app.test'),
             $hash
         );
         $manager->persist($admin);

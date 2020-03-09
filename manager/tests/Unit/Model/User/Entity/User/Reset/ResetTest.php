@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Model\User\Entity\User\Reset;
 
-use App\Model\User\Entity\User\Id;
-use App\Model\User\Entity\User\Name;
 use App\Model\User\Entity\User\ResetToken;
-use App\Model\User\Entity\User\User;
 use App\Tests\Builder\User\UserBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -52,5 +49,4 @@ class ResetTest extends TestCase
         $this->expectExceptionMessage('Resetting is not requested.');
         $user->passwordReset($now, 'hash');
     }
-
 }

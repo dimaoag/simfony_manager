@@ -86,7 +86,7 @@ class CreateTest extends DbWebTestCase
         $crawler = $this->client->submitForm('Create', [
             'form[firstName]' => 'Tom',
             'form[lastName]' => 'Bent',
-            'form[email]' => 'user@app.test',
+            'form[email]' => 'exesting-user@app.test',
         ]);
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
