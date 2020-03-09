@@ -34,14 +34,14 @@ class MainMenu
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link');
 
-//        $menu
-//            ->addChild('Tasks', ['route' => 'work.projects.tasks'])
-//            ->setExtra('routes', [
-//                ['route' => 'work.projects.tasks'],
-//                ['pattern' => '/^work.projects.tasks\..+/']
-//            ])
-//            ->setAttribute('class', 'nav-item')
-//            ->setLinkAttribute('class', 'nav-link');
+        $menu
+            ->addChild('Tasks', ['route' => 'work.projects.tasks'])
+            ->setExtra('routes', [
+                ['route' => 'work.projects.tasks'],
+                ['pattern' => '/^work.projects.tasks\..+/']
+            ])
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link');
 
 //        $menu
 //            ->addChild('Calendar', ['route' => 'work.projects.calendar'])
