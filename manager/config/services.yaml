@@ -77,7 +77,7 @@ services:
 #    Symfony\Component\HttpFoundation\Session\Session:
 #        alias: Symfony\Component\HttpFoundation\Session\SessionInterface
 #
-#    cebe\markdown\MarkdownExtra:
+    cebe\markdown\MarkdownExtra:
 #
 #    App\Service\Work\Processor\Driver\:
 #        resource: '../src/Service/Work/Processor/Driver/*Driver.php'
