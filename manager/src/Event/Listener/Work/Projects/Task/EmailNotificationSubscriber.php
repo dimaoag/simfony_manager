@@ -28,10 +28,10 @@ class EmailNotificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-//            TaskExecutorAssigned::class => [
-//                ['onTaskExecutorAssignedExecutor'],
-//                ['onTaskExecutorAssignedAuthor']
-//            ],
+            TaskExecutorAssigned::class => [
+                ['onTaskExecutorAssignedExecutor'],
+                ['onTaskExecutorAssignedAuthor']
+            ],
         ];
     }
 
