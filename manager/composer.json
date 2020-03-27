@@ -7,6 +7,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "^1.6",
+        "centrifugal/phpcent": "^3.0",
         "cebe/markdown": "^1.2",
         "exercise/htmlpurifier-bundle": "^2.0",
         "finesse/swiftmailer-defaults-plugin": "^2.0",
