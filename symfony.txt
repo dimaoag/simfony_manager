@@ -4,6 +4,7 @@ REGISTRY_ADDRESS=registry IMAGE_TAG=0 make build-production
 
 docker-compose run --rm manager-php-cli composer
 docker-compose run --rm manager-php-cli composer require slim/slim
+docker-compose run --rm manager-php-cli composer outdated
 
 
 // Symfony install

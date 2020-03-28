@@ -16,7 +16,6 @@
         "league/flysystem-bundle": "^1.1",
         "knpuniversity/oauth2-client-bundle": "^1.33",
         "league/oauth2-facebook": "^2.0",
-        "predis/predis": "^1.1",
         "ramsey/uuid": "^3.8",
         "sensio/framework-extra-bundle": "^5.4",
         "symfony/asset": "4.3.*",
