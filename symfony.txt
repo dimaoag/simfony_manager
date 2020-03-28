@@ -12,6 +12,7 @@ docker-compose run --rm manager-php-cli composer create-project symfony/website-
 
 // start tests
 docker-compose run --rm manager-php-cli php bin/phpunit
+docker-compose run --rm manager-php-cli php bin/phpunit --filter=HomeTest
 
 docker-compose run --rm manager-php-cli php bin/console
 docker-compose run --rm manager-php-cli php bin/console debug:router
