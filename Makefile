@@ -34,7 +34,7 @@ manager-migrations-new:
 manager-fixtures:
 	docker-compose run --rm manager-php-cli php bin/console doctrine:fixtures:load --no-interaction
 
-manager-init: manager-composer-install manager-assets-install manager-migrations manager-fixtures manager-ready
+manager-init: manager-composer-install manager-assets-install manager-oauth-keys manager-migrations manager-fixtures manager-ready
 
 manager-composer-install:
 	docker-compose run --rm manager-php-cli composer install

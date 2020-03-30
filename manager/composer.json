@@ -41,6 +41,8 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
         "webmozart/assert": "^1.4",
+        "trikoder/oauth2-bundle": "^2.0",
+        "nyholm/psr7": "^1.1",
         "zircote/swagger-php": "^3.0"
     },
     "require-dev": {
