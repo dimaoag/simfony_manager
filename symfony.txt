@@ -62,3 +62,6 @@ docker-compose run --rm manager-php-cli php bin/console user:role
 
 // clear cache
 docker-compose run --rm manager-php-cli php bin/console cache:clear
+
+// swagger
+docker-compose run --rm manager-php-cli php bin/console api:docs

@@ -42,8 +42,7 @@
         "symfony/yaml": "4.3.*",
         "webmozart/assert": "^1.4",
         "trikoder/oauth2-bundle": "^2.0",
-        "nyholm/psr7": "^1.1",
-        "zircote/swagger-php": "^3.0"
+        "nyholm/psr7": "^1.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -52,7 +51,8 @@
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*"
+        "symfony/test-pack": "*",
+        "zircote/swagger-php": "^3.0"
     },
     "config": {
         "preferred-install": {
