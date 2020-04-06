@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Annotation;
 
-use App\Model\User\Entity\User\Id;
 use App\Model\User\Entity\User\User;
 use App\ReadModel\User\UserFetcher;
 use App\Security\UserIdentity;
@@ -13,10 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Security;
 
