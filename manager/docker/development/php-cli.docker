@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet --version=1.10.20
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
